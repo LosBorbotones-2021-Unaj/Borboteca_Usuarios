@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Borboteca_Usuarios.AccesData\Borboteca_Usuarios.AccesData.csproj" />
     <ProjectReference Include="..\Borboteca_Usuarios.Domain\Borboteca_Usuarios.Domain.csproj" />
   </ItemGroup>
 
