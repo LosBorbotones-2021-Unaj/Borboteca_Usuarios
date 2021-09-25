@@ -51,6 +51,8 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IRollQuery, RollQuery>();
             services.AddTransient<IServiceRoll, ServiceRoll>();
+            services.AddTransient<IFavoritoQuery, FavoritoQuery>();
+            services.AddTransient<IServiceFavorito, ServiceFavorito>();
             
 
             services.AddCors(options =>

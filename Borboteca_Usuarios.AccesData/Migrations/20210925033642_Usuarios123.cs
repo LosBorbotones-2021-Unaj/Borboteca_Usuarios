@@ -2,7 +2,7 @@
 
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
-    public partial class Borboteca_Usuarios : Migration
+    public partial class Usuarios123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,17 +29,17 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                     Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Contraseña = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RollId = table.Column<int>(type: "int", nullable: true)
+                    Rollid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Roll_RollId",
-                        column: x => x.RollId,
+                        name: "FK_Usuarios_Roll_Rollid",
+                        column: x => x.Rollid,
                         principalTable: "Roll",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,29 +48,29 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libro = table.Column<int>(type: "int", nullable: false),
-                    UsuariosId = table.Column<int>(type: "int", nullable: true)
+                    Libroid = table.Column<int>(type: "int", nullable: false),
+                    Usuariosid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Favoritos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Favoritos_Usuarios_UsuariosId",
-                        column: x => x.UsuariosId,
+                        name: "FK_Favoritos_Usuarios_Usuariosid",
+                        column: x => x.Usuariosid,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favoritos_UsuariosId",
+                name: "IX_Favoritos_Usuariosid",
                 table: "Favoritos",
-                column: "UsuariosId");
+                column: "Usuariosid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_RollId",
+                name: "IX_Usuarios_Rollid",
                 table: "Usuarios",
-                column: "RollId");
+                column: "Rollid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

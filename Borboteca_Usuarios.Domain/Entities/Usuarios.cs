@@ -13,7 +13,10 @@ namespace Borboteca_Usuarios.Domain.Entities
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contraseña { get; set; }
-        public virtual Roll Roll { get; set; }
+        public int Rollid { get; set; }
+        public Roll Roll { get; set; }
+        public List<Favoritos> Favoritos { get; set; }
+        
 
     }
 }

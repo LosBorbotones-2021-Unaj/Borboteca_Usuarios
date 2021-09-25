@@ -10,6 +10,6 @@ namespace Borboteca_Usuarios.Domain.Queries
     public interface IFavoritoQuery
     {
         public List<Favoritos> GetFavoritosPorIdPerson(int id);
-       
+        Usuarios GetUsuarioPorId(int idUsuario);
     }
 }

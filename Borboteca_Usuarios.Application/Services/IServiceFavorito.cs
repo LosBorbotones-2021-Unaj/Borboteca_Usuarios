@@ -1,4 +1,5 @@
 ﻿using Borboteca_Usuarios.Domain.Commands;
+using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Entities;
 using Borboteca_Usuarios.Domain.Queries;
 using System;
@@ -12,6 +13,8 @@ namespace Borboteca_Usuarios.Application.Services
     public interface IServiceFavorito
     {
         List<Favoritos> GetFavoritosPorIdPerson(int id);
+     
+        object AgregarFavorito(FavoritoDTO favoritoDto);
     }
     public class ServiceFavorito : IServiceFavorito
     {
@@ -22,6 +25,20 @@ namespace Borboteca_Usuarios.Application.Services
         {
             _repository = repository;
             _query = query;
+        }
+
+      
+
+        public object AgregarFavorito(FavoritoDTO favoritoDto)
+        {
+            Favoritos favoritos = new Favoritos()
+            {
+                Libroid = favoritoDto.Libro,
+                Usuariosid = favoritoDto.idUsuario
+            };
+            _repository.Add<Favoritos>(favoritos);
+            return favoritoDto;
+
         }
 
         public List<Favoritos> GetFavoritosPorIdPerson(int id)

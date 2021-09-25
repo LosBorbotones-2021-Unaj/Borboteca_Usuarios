@@ -13,6 +13,8 @@ namespace Borboteca_Usuarios.AccesData.Configurations
         public ConfigFavoritos(EntityTypeBuilder<Favoritos> BuilderFavorito)
         {
             BuilderFavorito.HasKey(x => x.Id);
+            BuilderFavorito.HasOne<Usuarios>(x => x.Usuarios).WithMany(y => y.Favoritos).HasForeignKey(x => x.Usuariosid);
+
             
         }
     }

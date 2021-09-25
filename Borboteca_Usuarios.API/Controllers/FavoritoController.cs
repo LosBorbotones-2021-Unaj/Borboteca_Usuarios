@@ -1,4 +1,5 @@
 ﻿using Borboteca_Usuarios.Application.Services;
+using Borboteca_Usuarios.Domain.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,21 @@ namespace Borboteca_Usuarios.API.Controllers
             try
             {
                 return new JsonResult(_Service.GetFavoritosPorIdPerson(id)) { StatusCode = 201 };
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(new { error = "No se devuelve nada" + e.Message });
+            }
+        }
+      
+        [Route("AgragarFavoritoDto")]
+        [HttpPost]
+        public IActionResult AgregarFavoritoDto(FavoritoDTO favoritoDto)
+        {
+            try
+            {
+                return new JsonResult(_Service.AgregarFavorito(favoritoDto));
             }
             catch (Exception e)
             {
