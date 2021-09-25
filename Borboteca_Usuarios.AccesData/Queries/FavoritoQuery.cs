@@ -28,5 +28,28 @@ namespace Borboteca_Usuarios.AccesData.Queries
             var query= db.Query("Favoritos").Where("UsuariosId", "=", id).Select();
             return query.Get<Favoritos>().ToList();
         }
+
+        public Usuarios GetUsuarioPorId(int idUsuario)
+        {
+            var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
+            return db.Query("Usuarios").Where("id", "=", idUsuario).FirstOrDefault<Usuarios>();
+        }
+
+        //public Usuarios GetUsuarioPorId(int idUsuario)
+        //{
+        //    var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
+
+        //    Usuarios usuario= db.Query("Usuarios").Where("id", "=", idUsuario).FirstOrDefault<Usuarios>();
+        //    Roll roll = db.Query("Roll").Where("id", "=", usuario.Roll).FirstOrDefault<Roll>();
+        //    Usuarios NewUser = new Usuarios
+        //    {
+        //        Nombre = usuario.Nombre,
+        //        Apellido = usuario.Apellido,
+        //        Email = usuario.Email,
+        //        Roll = roll,
+        //        Contraseña = usuario.Contraseña
+        //    };
+        //    return NewUser;
+        //}
     }
 }
