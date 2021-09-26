@@ -16,7 +16,9 @@ namespace Borboteca_Usuarios.Application.Services
     {
         public Usuarios GetUsuarioById(int id);
         public List<Usuarios> MostrarUsuarios();
-        public void AgregarUsuario(UsuarioDTO usuarioDTO);
+        public Usuarios AgregarUsuario(UsuarioDTO usuarioDTO);
+
+        
     }
     public class UsuarioService : IUsuarioService
     {
@@ -29,16 +31,20 @@ namespace Borboteca_Usuarios.Application.Services
             _query = query;
         }
 
-        public void AgregarUsuario(UsuarioDTO usuarioDTO)
+        public Usuarios AgregarUsuario(UsuarioDTO usuarioDTO)
         {
             Usuarios usuarios = new Usuarios
             {
                 Nombre = usuarioDTO.Nombre,
                 Apellido = usuarioDTO.Apellido,
                 Email = usuarioDTO.Email,
-                Contraseña = usuarioDTO.Contraseña
+                Contraseña = usuarioDTO.Contraseña,
+                Rollid = 1,
+                
             };
             _repository.Add<Usuarios>(usuarios);
+
+            return usuarios;
         }
 
         public List<Usuarios> MostrarUsuarios()
