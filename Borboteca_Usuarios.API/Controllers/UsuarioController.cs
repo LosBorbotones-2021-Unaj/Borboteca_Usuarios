@@ -1,4 +1,5 @@
 ﻿using Borboteca_Usuarios.Application.Services;
+using Borboteca_Usuarios.Domain.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,11 +23,11 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             try
             {
-                return new JsonResult(_service.MostrarUsuarios()) { StatusCode = 201};
+                return new JsonResult(_service.MostrarUsuarios()) { StatusCode = 201 };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return BadRequest(new { error = "No se devuelve nada" +e.Message});
+                return BadRequest(new { error = "No se devuelve nada" + e.Message });
             }
         }
         [HttpGet("{id}")]
@@ -39,6 +40,17 @@ namespace Borboteca_Usuarios.API.Controllers
             catch (Exception e)
             {
                 return BadRequest(new { error = "No se devuelve nada" + e.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult guardarUsuario(UsuarioDTO usuarioDto) {
+            try
+            {
+               return new JsonResult(_service.AgregarUsuario(usuarioDto)) { StatusCode = 201};
+            }
+            catch (Exception e) {
+                return BadRequest(new { error = "no se crea nada" + e.Message });
             }
         }
     }
