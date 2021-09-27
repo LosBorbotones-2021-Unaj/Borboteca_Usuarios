@@ -11,5 +11,6 @@ namespace Borboteca_Usuarios.Domain.Entities
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public List<Usuarios> Usuarios { get; set; }
+
     }
 }
