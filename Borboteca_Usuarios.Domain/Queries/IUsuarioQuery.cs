@@ -1,4 +1,5 @@
-﻿using Borboteca_Usuarios.Domain.Entities;
+﻿using Borboteca_Usuarios.Domain.DTO;
+using Borboteca_Usuarios.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Borboteca_Usuarios.Domain.Queries
 {
     public interface IUsuarioQuery
     {
-        public Usuarios GetUsuarioById(int id);
+        public UsuarioVistaDTO GetUsuarioById(int id);
         public List<Usuarios> GetAll();
     }
 }

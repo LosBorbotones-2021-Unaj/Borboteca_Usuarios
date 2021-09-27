@@ -14,9 +14,9 @@ namespace Borboteca_Usuarios.Application.Services
 {
     public interface IUsuarioService
     {
-        public Usuarios GetUsuarioById(int id);
+        public UsuarioVistaDTO GetUsuarioById(int id);
         public List<Usuarios> MostrarUsuarios();
-        public Usuarios AgregarUsuario(UsuarioDTO usuarioDTO);
+        public UsuarioVistaDTO AgregarUsuario(UsuarioDTO usuarioDTO);
 
         
     }
@@ -31,7 +31,7 @@ namespace Borboteca_Usuarios.Application.Services
             _query = query;
         }
 
-        public Usuarios AgregarUsuario(UsuarioDTO usuarioDTO)
+        public UsuarioVistaDTO AgregarUsuario(UsuarioDTO usuarioDTO)
         {
             Usuarios usuarios = new Usuarios
             {
@@ -43,15 +43,20 @@ namespace Borboteca_Usuarios.Application.Services
                 
             };
             _repository.Add<Usuarios>(usuarios);
-
-            return usuarios;
+            UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
+            {
+                Nombre = usuarioDTO.Nombre,
+                Apellido = usuarioDTO.Apellido,
+                Email = usuarioDTO.Email
+            };
+            return usuarioVistaDTO;
         }
 
         public List<Usuarios> MostrarUsuarios()
         {
             return _query.GetAll();
         }
-        public Usuarios GetUsuarioById(int id)
+        public UsuarioVistaDTO GetUsuarioById(int id)
         {
             return _query.GetUsuarioById(id);
         }

@@ -15,8 +15,8 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             _service = service;
         }
-
-       [HttpGet("{id}")]
+        [Route("api/Roll")]
+        [HttpGet]
         public IActionResult GetRollById(int id)
         {
             try

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SqlKata.Execution;
-
+using Borboteca_Usuarios.Domain.DTO;
 
 namespace Borboteca_Usuarios.AccesData.Queries
 {
@@ -35,10 +35,10 @@ namespace Borboteca_Usuarios.AccesData.Queries
             return result.ToList();
         }
 
-        public Usuarios GetUsuarioById(int id)
+        public UsuarioVistaDTO GetUsuarioById(int id)
         {
             var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
-            return db.Query("Usuarios").Where("id","=",id).FirstOrDefault<Usuarios>();
+            return db.Query("Usuarios").Where("id","=",id).FirstOrDefault<UsuarioVistaDTO>();
 
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Borboteca_Usuarios.Domain.Commands;
+using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Entities;
 using Borboteca_Usuarios.Domain.Queries;
 using System;
@@ -11,7 +12,7 @@ namespace Borboteca_Usuarios.Application.Services
 {
     public interface IServiceRoll
     {
-        public Roll GetRollById(int id);
+        public RollDTO GetRollById(int id);
 
     }
     public class ServiceRoll : IServiceRoll
@@ -25,7 +26,7 @@ namespace Borboteca_Usuarios.Application.Services
             _query = query;
         }
 
-        public Roll GetRollById(int id)
+        public RollDTO GetRollById(int id)
         {
             return _query.GetRollById(id);
         }

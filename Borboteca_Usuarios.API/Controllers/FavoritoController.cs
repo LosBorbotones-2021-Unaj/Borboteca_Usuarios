@@ -18,7 +18,7 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             _Service = service;
         }
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult GetFavoritosPorIdPerson(int id)
         {
             try

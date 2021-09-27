@@ -18,6 +18,7 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             this._service = service;
         }
+        
         [HttpGet]
         public IActionResult GetResult()
         {
@@ -29,8 +30,11 @@ namespace Borboteca_Usuarios.API.Controllers
             {
                 return BadRequest(new { error = "No se devuelve nada" + e.Message });
             }
+
         }
-        [HttpGet("{id}")]
+        
+        [HttpGet]
+        [Route("FindById")]
         public IActionResult GetUsuarioById(int id)
         {
             try
