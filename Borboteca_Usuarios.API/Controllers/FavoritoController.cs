@@ -28,22 +28,22 @@ namespace Borboteca_Usuarios.API.Controllers
             catch (Exception e)
             {
 
-                return BadRequest(new { error = "No se devuelve nada" + e.Message });
+                return BadRequest(new {e.Message });
             }
         }
       
-        [Route("AgragarFavoritoDto")]
+        [Route("Add")]
         [HttpPost]
         public IActionResult AgregarFavoritoDto(FavoritoDTO favoritoDto)
         {
             try
             {
-                return new JsonResult(_Service.AgregarFavorito(favoritoDto));
+                return new JsonResult(_Service.AgregarFavorito(favoritoDto)) { StatusCode = 201 }; 
             }
             catch (Exception e)
             {
 
-                return BadRequest(new { error = "No se devuelve nada" + e.Message });
+                return BadRequest(new {e.Message });
             }
         }
     }
