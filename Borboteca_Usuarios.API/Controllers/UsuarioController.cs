@@ -46,6 +46,22 @@ namespace Borboteca_Usuarios.API.Controllers
                 return BadRequest(new { error = "No se devuelve nada" + e.Message });
             }
         }
+        [HttpGet]
+        [Route("/api/usuarios/getUsuario")]
+        public IActionResult GetUsuarioByPassAndName(string email ,string contraseña)
+        {
+            var response = new ResponseDTO<UsuarioLocalStorageDTO>();
+            response = _service.GetUsuarioByPassAndName(email, contraseña);
+            if (response.Response.Any())
+            {
+                return new JsonResult(response.Response) { StatusCode = 404 };
+            }
+            else
+            {
+                return new JsonResult(response.Data) { StatusCode = 200 };
+            }
+           
+        }
 
         [HttpPost]
         public IActionResult guardarUsuario(UsuarioDTO usuarioDto) {
