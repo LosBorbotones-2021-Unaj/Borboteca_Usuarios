@@ -20,11 +20,13 @@ namespace Borboteca_Usuarios.AccesData.Queries
     {
         private readonly IDbConnection connection;
         private readonly Compiler sqlKataCompiler;
+        private readonly ApplicationDbContext context;
 
-        public UsuarioQuery(IDbConnection connection, Compiler sqlKataCompiler)
+        public UsuarioQuery(IDbConnection connection, Compiler sqlKataCompiler, ApplicationDbContext context)
         {
             this.connection = connection;
             this.sqlKataCompiler = sqlKataCompiler;
+            this.context = context;
         }
 
         public List<Usuarios> GetAll()
@@ -39,6 +41,28 @@ namespace Borboteca_Usuarios.AccesData.Queries
         {
             var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
             return db.Query("Usuarios").Where("id","=",id).FirstOrDefault<UsuarioVistaDTO>();
+
+        }
+
+        public ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña)
+        {
+            var response = new ResponseDTO<UsuarioLocalStorageDTO>();
+            var usuario = (from x in context.Usuarios
+                           where x.Email == nombre && x.Contraseña == contraseña
+                           select new UsuarioLocalStorageDTO { id = x.Id }).FirstOrDefault<UsuarioLocalStorageDTO>();
+
+            if (object.ReferenceEquals(null, usuario))
+            {
+                response.Response.Add("No existe el usuario");
+                return response;
+            }
+            else
+            {
+                response.Data.Add(usuario);
+                return response;
+
+            }
+          
 
         }
     }

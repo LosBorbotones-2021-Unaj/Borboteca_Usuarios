@@ -17,8 +17,7 @@ namespace Borboteca_Usuarios.Application.Services
         public UsuarioVistaDTO GetUsuarioById(int id);
         public List<Usuarios> MostrarUsuarios();
         public UsuarioVistaDTO AgregarUsuario(UsuarioDTO usuarioDTO);
-
-        
+        ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña);
     }
     public class UsuarioService : IUsuarioService
     {
@@ -59,6 +58,12 @@ namespace Borboteca_Usuarios.Application.Services
         public UsuarioVistaDTO GetUsuarioById(int id)
         {
             return _query.GetUsuarioById(id);
+        }
+
+        public ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña)
+        {
+            return _query.GetUsuarioByPassAndName(nombre, contraseña);
+            
         }
     }
 }
