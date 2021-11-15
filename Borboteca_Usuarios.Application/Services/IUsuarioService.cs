@@ -15,8 +15,8 @@ namespace Borboteca_Usuarios.Application.Services
     public interface IUsuarioService
     {
         public UsuarioVistaDTO GetUsuarioById(int id);
-        public List<Usuarios> MostrarUsuarios();
-        public UsuarioVistaDTO AgregarUsuario(UsuarioDTO usuarioDTO);
+        public ResponseDTO<Usuarios> MostrarUsuarios();
+        public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO);
         ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña);
     }
     public class UsuarioService : IUsuarioService
@@ -30,30 +30,53 @@ namespace Borboteca_Usuarios.Application.Services
             _query = query;
         }
 
-        public UsuarioVistaDTO AgregarUsuario(UsuarioDTO usuarioDTO)
+        public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO)
         {
-            Usuarios usuarios = new Usuarios
+            var response = new ResponseDTO<UsuarioVistaDTO>();
+            try
             {
-                Nombre = usuarioDTO.Nombre,
-                Apellido = usuarioDTO.Apellido,
-                Email = usuarioDTO.Email,
-                Contraseña = usuarioDTO.Contraseña,
-                Rollid = 1,
-                
-            };
-            _repository.Add<Usuarios>(usuarios);
-            UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
+                Usuarios usuarios = new Usuarios
+                {
+                    Nombre = usuarioDTO.Nombre,
+                    Apellido = usuarioDTO.Apellido,
+                    Email = usuarioDTO.Email,
+                    Contraseña = usuarioDTO.Contraseña,
+                    Rollid = 1,
+
+                };
+                _repository.Add<Usuarios>(usuarios);
+                UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
+                {
+                    Nombre = usuarioDTO.Nombre,
+                    Apellido = usuarioDTO.Apellido,
+                    Email = usuarioDTO.Email
+                };
+                response.Data.Add(usuarioVistaDTO);
+                return response;
+            }
+            catch (Exception e)
             {
-                Nombre = usuarioDTO.Nombre,
-                Apellido = usuarioDTO.Apellido,
-                Email = usuarioDTO.Email
-            };
-            return usuarioVistaDTO;
+                response.Response.Add(e.Message);
+                return response;
+            }
+           
         }
 
-        public List<Usuarios> MostrarUsuarios()
+        public ResponseDTO<Usuarios> MostrarUsuarios()
         {
-            return _query.GetAll();
+            var response = new ResponseDTO<Usuarios>();
+            try
+            {
+                response.Data = _query.GetAll();
+                return response;
+            }
+            catch (Exception e)
+            {
+                response.Response.Add(e.Message);
+                return response;
+                
+            }
+            
         }
         public UsuarioVistaDTO GetUsuarioById(int id)
         {

@@ -65,13 +65,19 @@ namespace Borboteca_Usuarios.API.Controllers
 
         [HttpPost]
         public IActionResult guardarUsuario(UsuarioDTO usuarioDto) {
-            try
+            var response = new ResponseDTO<UsuarioDTO>();
+
+            if (response.Response.Any())
             {
+                return new JsonResult(response.Response) { StatusCode = 400 };
+            }
+            else
+            {
+                return new JsonResult(response.Data) { StatusCode = 201 };
+            }
+            
                return new JsonResult(_service.AgregarUsuario(usuarioDto)) { StatusCode = 201};
-            }
-            catch (Exception e) {
-                return BadRequest(new { error = "no se crea nada" + e.Message });
-            }
+           
         }
     }
 }
