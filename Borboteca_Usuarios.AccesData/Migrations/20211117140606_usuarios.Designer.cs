@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210925033642_Usuarios123")]
-    partial class Usuarios123
+    [Migration("20211117140606_usuarios")]
+    partial class usuarios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,17 +107,12 @@ namespace Borboteca_Usuarios.AccesData.Migrations
             modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Usuarios", b =>
                 {
                     b.HasOne("Borboteca_Usuarios.Domain.Entities.Roll", "Roll")
-                        .WithMany("Usuarios")
+                        .WithMany()
                         .HasForeignKey("Rollid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Roll");
-                });
-
-            modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Roll", b =>
-                {
-                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Usuarios", b =>

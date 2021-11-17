@@ -63,6 +63,13 @@ namespace Borboteca_Usuarios.AccesData.Queries
 
             }
           
+        }
+
+        //metodo de prueba
+        public Usuarios GetById(int id)
+        {
+            var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
+            return db.Query("Usuarios").Where("id", "=", id).FirstOrDefault<Usuarios>();
 
         }
     }

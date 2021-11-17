@@ -13,5 +13,7 @@ namespace Borboteca_Usuarios.Domain.Queries
         public UsuarioVistaDTO GetUsuarioById(int id);
         public List<Usuarios> GetAll();
         ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña);
+
+        Usuarios GetById(int id);
     }
 }
