@@ -105,17 +105,12 @@ namespace Borboteca_Usuarios.AccesData.Migrations
             modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Usuarios", b =>
                 {
                     b.HasOne("Borboteca_Usuarios.Domain.Entities.Roll", "Roll")
-                        .WithMany("Usuarios")
+                        .WithMany()
                         .HasForeignKey("Rollid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Roll");
-                });
-
-            modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Roll", b =>
-                {
-                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Usuarios", b =>

@@ -1,5 +1,6 @@
 ﻿using Borboteca_Usuarios.Application.Services;
 using Borboteca_Usuarios.Domain.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,7 +19,9 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             this._service = service;
         }
-        
+
+
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult GetResult()
         {
@@ -39,7 +42,7 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             try
             {
-                return new JsonResult(_service.GetUsuarioById(id)) { StatusCode = 201 };
+                return new JsonResult(_service.GetUsuarioById(id)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
@@ -47,7 +50,7 @@ namespace Borboteca_Usuarios.API.Controllers
             }
         }
         [HttpGet]
-        [Route("/api/usuarios/getUsuario")]
+        [Route("getUsuario")]
         public IActionResult GetUsuarioByPassAndName(string email ,string contraseña)
         {
             var response = new ResponseDTO<UsuarioLocalStorageDTO>();
@@ -76,7 +79,7 @@ namespace Borboteca_Usuarios.API.Controllers
                 return new JsonResult(response.Data) { StatusCode = 201 };
             }
             
-               return new JsonResult(_service.AgregarUsuario(usuarioDto)) { StatusCode = 201};
+            //   return new JsonResult(_service.AgregarUsuario(usuarioDto)) { StatusCode = 201};
            
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
-    public partial class Usuarios123 : Migration
+    public partial class usuarios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
