@@ -53,9 +53,7 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<Compiler, SqlServerCompiler>(); // injeccion de dependencia a las querys concretas
             services.AddTransient<IGenericsRepository, GenericsRepository>();
             services.AddTransient<IUsuarioQuery, UsuarioQuery>();
-            services.AddTransient<IUsuarioService, UsuarioService>();
-            services.AddTransient<IRollQuery, RollQuery>();
-            services.AddTransient<IServiceRoll, ServiceRoll>();
+            services.AddTransient<IUsuarioService, UsuarioService>();    
             services.AddTransient<IFavoritoQuery, FavoritoQuery>();
             services.AddTransient<IServiceFavorito, ServiceFavorito>();
 

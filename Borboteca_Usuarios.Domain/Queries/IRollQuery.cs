@@ -8,8 +8,5 @@ using System.Threading.Tasks;
 
 namespace Borboteca_Usuarios.Domain.Queries
 {
-    public interface IRollQuery
-    {
-        public RollDTO GetRollById(int id);
-    }
+   
 }

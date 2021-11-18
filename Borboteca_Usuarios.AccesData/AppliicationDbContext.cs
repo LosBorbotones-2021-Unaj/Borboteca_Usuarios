@@ -23,8 +23,24 @@ namespace Borboteca_Usuarios.AccesData
             new ConfigUsuarios(modelBuilder.Entity<Usuarios>());
             
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Roll>(entity =>
+            {
+                entity.ToTable("Roll");
+                entity.HasData(new Roll
+                {
+                    Id = 1,
+                    Descripcion = "user"
+                });
+                entity.HasData(new Roll
+                {
+                    Id=2,
+                    Descripcion="admin"
+                });
+            });
+           
         }
-      
+       
+
         public DbSet<Favoritos> Favoritos { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Roll> Roll { get; set; }
