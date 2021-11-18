@@ -1,6 +1,7 @@
 ﻿using Borboteca_Usuarios.API.Models;
 using Borboteca_Usuarios.Application.Services;
 using Borboteca_Usuarios.Domain.Commands;
+using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Entities;
 using Borboteca_Usuarios.Domain.Queries;
 using Microsoft.Extensions.Configuration;
@@ -32,21 +33,32 @@ namespace Borboteca_Usuarios.API.Services
             this.userQuery = userQuery;
         }
 
-        public UserResponse Authenticate(LoginModel model)
+        public ResponseDTO<Token> Authenticate(LoginModel model)
         {
-            //Usuarios user = _service.GetUsuarioById(model.Id);
-            //hardcodeo ID 1
-            //Usuarios user = userQuery.GetById(model.Id);
-            Usuarios user = userQuery.GetById(1);
 
-            if (user == null)
+            var response = new ResponseDTO<Token>();
+            try
             {
-                return null;
+                UsuarioVistaDTO user = userQuery.GetbypassEncrypt(model.Email, model.Password);
+
+                if (user == null)
+                {
+                    return null;
+                }
+
+                Token token = new Token { 
+                token= GenerateJwtToken(user)
+                } ;
+
+                response.Data.Add(token);
+                return response;
             }
+            catch (Exception e)
+            {
 
-            var token = GenerateJwtToken(user);
-
-            return new UserResponse(user, token);
+                response.Response.Add(e.Message);
+                return response;
+            }
 
         }
 
@@ -56,13 +68,13 @@ namespace Borboteca_Usuarios.API.Services
         }
 
 
-        private string GenerateJwtToken(Usuarios usuario) 
+        private string GenerateJwtToken(UsuarioVistaDTO usuario) 
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var keys = Encoding.ASCII.GetBytes(JwtKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", usuario.Id.ToString()), new Claim("nombre", usuario.Nombre)}),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", usuario.id.ToString()), new Claim("nombre", usuario.Nombre)}),
                 Expires = DateTime.UtcNow.AddHours(24),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keys), SecurityAlgorithms.HmacSha256Signature),
             };

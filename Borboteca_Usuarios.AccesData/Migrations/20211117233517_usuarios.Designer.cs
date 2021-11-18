@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211117140606_usuarios")]
+    [Migration("20211117233517_usuarios")]
     partial class usuarios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,8 +70,8 @@ namespace Borboteca_Usuarios.AccesData.Migrations
 
                     b.Property<string>("Contraseña")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Email")
                         .IsRequired()

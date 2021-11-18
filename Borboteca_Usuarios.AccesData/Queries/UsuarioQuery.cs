@@ -44,26 +44,7 @@ namespace Borboteca_Usuarios.AccesData.Queries
 
         }
 
-        public ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña)
-        {
-            var response = new ResponseDTO<UsuarioLocalStorageDTO>();
-            var usuario = (from x in context.Usuarios
-                           where x.Email == nombre && x.Contraseña == contraseña
-                           select new UsuarioLocalStorageDTO { id = x.Id }).FirstOrDefault<UsuarioLocalStorageDTO>();
 
-            if (object.ReferenceEquals(null, usuario))
-            {
-                response.Response.Add("No existe el usuario");
-                return response;
-            }
-            else
-            {
-                response.Data.Add(usuario);
-                return response;
-
-            }
-          
-        }
 
         //metodo de prueba
         public Usuarios GetById(int id)
@@ -71,6 +52,15 @@ namespace Borboteca_Usuarios.AccesData.Queries
             var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
             return db.Query("Usuarios").Where("id", "=", id).FirstOrDefault<Usuarios>();
 
+        }
+
+        public UsuarioVistaDTO GetbypassEncrypt(string email, string password)
+        {
+            return (from x in context.Usuarios
+                           where x.Email == email && x.Contraseña == password
+                           select new UsuarioVistaDTO { id = x.Id ,Nombre=x.Nombre,Apellido=x.Apellido,Email=x.Email }).FirstOrDefault<UsuarioVistaDTO>();
+
+          
         }
     }
 }

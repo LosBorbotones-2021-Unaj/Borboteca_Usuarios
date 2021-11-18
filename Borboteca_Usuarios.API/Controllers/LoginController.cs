@@ -1,5 +1,7 @@
 ﻿using Borboteca_Usuarios.API.Models;
 using Borboteca_Usuarios.API.Services;
+using Borboteca_Usuarios.Application.Utilities;
+using Borboteca_Usuarios.Domain.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,18 +23,26 @@ namespace Borboteca_Usuarios.API.Controllers
             this.loginService = loginService;           
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public IActionResult login([FromBody] LoginModel model)
         {
-            var response = loginService.Authenticate(model);
-
-            if (response == null)
+            var userEncrypt = new LoginModel
             {
-                return BadRequest(new { message ="usuario o contraseña incorrectos"});
+                Email = model.Email,
+                Password = Encrypt.GetSHA256(model.Password)
+            };
+            var response = new ResponseDTO<Token>();
+            response = loginService.Authenticate(userEncrypt);
+
+            if (response.Response.Any())
+            {
+                return new JsonResult(response.Response) { StatusCode = 404 };
             }
-
-
-            return Ok(response);
+            else
+            {
+                return new JsonResult(response.Data) { StatusCode = 200 };
+            }
+           
         }
     }
 }

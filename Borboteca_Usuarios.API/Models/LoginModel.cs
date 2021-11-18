@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Borboteca_Usuarios.Application.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

@@ -16,7 +16,7 @@ namespace Borboteca_Usuarios.AccesData.Configurations
             entityTypeBuilder.Property(x => x.Nombre).HasMaxLength(50).IsRequired();
             entityTypeBuilder.Property(x => x.Apellido).HasMaxLength(50).IsRequired();
             entityTypeBuilder.Property(x => x.Email).HasMaxLength(50).IsRequired();
-            entityTypeBuilder.Property(x => x.Contraseña).HasMaxLength(50).IsRequired().IsRequired();
+            entityTypeBuilder.Property(x => x.Contraseña).HasMaxLength(256).IsRequired().IsRequired();
         }
     }
 }

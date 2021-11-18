@@ -60,7 +60,7 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<IServiceFavorito, ServiceFavorito>();
 
             services.AddScoped<ILoginService, LoginService>();
-
+            ////////////////////////////////////////////////////////////////////////////
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("JwtSettings:Secret").Value);
             services.AddAuthentication(au =>
             {
@@ -79,7 +79,7 @@ namespace Borboteca_Usuarios.API
                 };
             });
 
-
+            /////////////////////////////////////////////////////////////////////////////
 
             services.AddCors(options =>
             {

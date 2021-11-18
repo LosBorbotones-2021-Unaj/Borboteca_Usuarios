@@ -1,4 +1,5 @@
-﻿using Borboteca_Usuarios.Domain.Entities;
+﻿using Borboteca_Usuarios.Domain.DTO;
+using Borboteca_Usuarios.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace Borboteca_Usuarios.API.Models
         public string Token { get; set; }
 
 
-        public UserResponse(Usuarios usuario, string token) 
+        public UserResponse(UsuarioVistaDTO usuario, string token) 
         {
-            Id = usuario.Id;
+            Id = usuario.id;
             Nombre = usuario.Nombre;
             Apellido = usuario.Apellido;
             Email = usuario.Email;

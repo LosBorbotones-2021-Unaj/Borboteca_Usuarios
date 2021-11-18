@@ -1,4 +1,5 @@
 ﻿using Borboteca_Usuarios.API.Models;
+using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Borboteca_Usuarios.API.Services
 {
     public interface ILoginService
     {
-        UserResponse Authenticate(LoginModel usuario);
+        ResponseDTO<Token> Authenticate(LoginModel usuario);
 
         Usuarios GetById(int id);
     }

@@ -1,5 +1,6 @@
 ﻿using Borboteca_Usuarios.AccesData.Command;
 using Borboteca_Usuarios.AccesData.Queries;
+using Borboteca_Usuarios.Application.Utilities;
 using Borboteca_Usuarios.Domain.Commands;
 using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Entities;
@@ -17,12 +18,13 @@ namespace Borboteca_Usuarios.Application.Services
         public UsuarioVistaDTO GetUsuarioById(int id);
         public ResponseDTO<Usuarios> MostrarUsuarios();
         public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO);
-        ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña);
+     
     }
     public class UsuarioService : IUsuarioService
     {
         private readonly IGenericsRepository _repository;
         private readonly IUsuarioQuery _query;
+        
 
         public UsuarioService(IGenericsRepository repository, IUsuarioQuery query)
         {
@@ -35,16 +37,16 @@ namespace Borboteca_Usuarios.Application.Services
             var response = new ResponseDTO<UsuarioVistaDTO>();
             try
             {
-                Usuarios usuarios = new Usuarios
+                Usuarios usuario = new Usuarios
                 {
                     Nombre = usuarioDTO.Nombre,
                     Apellido = usuarioDTO.Apellido,
                     Email = usuarioDTO.Email,
-                    Contraseña = usuarioDTO.Contraseña,
+                    Contraseña = Encrypt.GetSHA256(usuarioDTO.Contraseña),
                     Rollid = 1,
 
                 };
-                _repository.Add<Usuarios>(usuarios);
+                _repository.Add<Usuarios>(usuario);
                 UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
                 {
                     Nombre = usuarioDTO.Nombre,
@@ -83,10 +85,6 @@ namespace Borboteca_Usuarios.Application.Services
             return _query.GetUsuarioById(id);
         }
 
-        public ResponseDTO<UsuarioLocalStorageDTO> GetUsuarioByPassAndName(string nombre, string contraseña)
-        {
-            return _query.GetUsuarioByPassAndName(nombre, contraseña);
-            
-        }
+        
     }
 }

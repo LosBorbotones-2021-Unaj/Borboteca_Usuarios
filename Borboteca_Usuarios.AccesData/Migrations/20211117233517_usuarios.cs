@@ -28,7 +28,7 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Rollid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
