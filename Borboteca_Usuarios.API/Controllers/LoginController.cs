@@ -18,9 +18,9 @@ namespace Borboteca_Usuarios.API.Controllers
 
         private ILoginService loginService;
 
-        public LoginController(ILoginService loginService) 
+        public LoginController(ILoginService loginService)
         {
-            this.loginService = loginService;           
+            this.loginService = loginService;
         }
 
         [HttpPost]
@@ -34,9 +34,17 @@ namespace Borboteca_Usuarios.API.Controllers
             var response = new ResponseDTO<Token>();
             response = loginService.Authenticate(userEncrypt);
 
-            if (response.Response.Any())
+            if (response == null||response.Response.Any())
             {
-                return new JsonResult(response.Response) { StatusCode = 404 };
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return new JsonResult(response.Response) { StatusCode = 404 };
+                }
+                
             }
             else
             {
