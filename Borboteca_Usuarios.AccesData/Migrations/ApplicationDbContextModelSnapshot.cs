@@ -52,6 +52,18 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roll");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Descripcion = "user"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Descripcion = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Borboteca_Usuarios.Domain.Entities.Usuarios", b =>
