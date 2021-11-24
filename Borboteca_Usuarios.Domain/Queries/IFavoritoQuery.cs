@@ -12,7 +12,7 @@ namespace Borboteca_Usuarios.Domain.Queries
     {
         public List<FavoritoDTO> GetFavoritosPorIdPerson(int id);
         Usuarios GetUsuarioPorId(int idUsuario);
-        void deleteFavorito(FavoritoDTO favorito);
+        Favoritos deleteFavorito(FavoritoDTO favorito);
         FavoritoDTO existefavorito(FavoritoDTO favorito);
     }
 }

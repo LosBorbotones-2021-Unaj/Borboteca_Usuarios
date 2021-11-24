@@ -25,10 +25,12 @@ namespace Borboteca_Usuarios.AccesData.Queries
             this.context = context;
         }
 
-        public void deleteFavorito(FavoritoDTO favorito)
+        public Favoritos deleteFavorito(FavoritoDTO favorito)
         {
             Favoritos fav = (from x in context.Favoritos where x.Usuariosid == favorito.idUsuario && x.Libroid == favorito.Libro select x).FirstOrDefault<Favoritos>();
-            context.Remove<Favoritos>(fav);
+            return fav;
+            /*context.Remove<Favoritos>(fav);*/
+          
         }
 
         public FavoritoDTO existefavorito(FavoritoDTO favorito)

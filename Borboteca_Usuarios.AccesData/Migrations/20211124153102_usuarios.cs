@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
-    public partial class usurios : Migration
+    public partial class usuarios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

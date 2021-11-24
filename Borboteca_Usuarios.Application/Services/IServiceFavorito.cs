@@ -58,7 +58,8 @@ namespace Borboteca_Usuarios.Application.Services
         {
             try
             {
-                _query.deleteFavorito(favorito);
+                var Fav = _query.deleteFavorito(favorito);
+                _repository.Delete<Favoritos>(Fav);
                 return true;
             }
             catch
