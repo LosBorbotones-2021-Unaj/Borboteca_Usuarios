@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211121174632_usurios")]
-    partial class usurios
+    [Migration("20211124153102_usuarios")]
+    partial class usuarios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
