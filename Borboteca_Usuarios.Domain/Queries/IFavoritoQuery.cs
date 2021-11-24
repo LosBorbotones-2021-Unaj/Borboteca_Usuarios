@@ -1,4 +1,5 @@
-﻿using Borboteca_Usuarios.Domain.Entities;
+﻿using Borboteca_Usuarios.Domain.DTO;
+using Borboteca_Usuarios.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Borboteca_Usuarios.Domain.Queries
 {
     public interface IFavoritoQuery
     {
-        public List<Favoritos> GetFavoritosPorIdPerson(int id);
+        public List<FavoritoDTO> GetFavoritosPorIdPerson(int id);
         Usuarios GetUsuarioPorId(int idUsuario);
+        void deleteFavorito(FavoritoDTO favorito);
+        FavoritoDTO existefavorito(FavoritoDTO favorito);
     }
 }

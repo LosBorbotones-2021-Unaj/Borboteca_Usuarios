@@ -9,7 +9,7 @@ namespace Borboteca_Usuarios.Domain.DTO
   public class FavoritoDTO
 
     {
-        public int  Libro { get; set; }
+        public Guid  Libro { get; set; }
         public int  idUsuario { get; set; }
     }
 }

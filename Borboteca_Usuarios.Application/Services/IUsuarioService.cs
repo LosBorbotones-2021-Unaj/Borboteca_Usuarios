@@ -18,7 +18,7 @@ namespace Borboteca_Usuarios.Application.Services
         public UsuarioVistaDTO GetUsuarioById(int id);
         public ResponseDTO<Usuarios> MostrarUsuarios();
         public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO);
-     
+        
     }
     public class UsuarioService : IUsuarioService
     {

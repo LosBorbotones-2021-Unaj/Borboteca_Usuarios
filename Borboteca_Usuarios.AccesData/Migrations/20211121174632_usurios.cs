@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Borboteca_Usuarios.AccesData.Migrations
 {
-    public partial class usuarios : Migration
+    public partial class usurios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +49,7 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libroid = table.Column<int>(type: "int", nullable: false),
+                    Libroid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Usuariosid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -61,6 +62,16 @@ namespace Borboteca_Usuarios.AccesData.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Roll",
+                columns: new[] { "Id", "Descripcion" },
+                values: new object[] { 1, "user" });
+
+            migrationBuilder.InsertData(
+                table: "Roll",
+                columns: new[] { "Id", "Descripcion" },
+                values: new object[] { 2, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Favoritos_Usuariosid",

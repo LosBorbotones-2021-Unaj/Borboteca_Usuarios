@@ -1,5 +1,7 @@
 ﻿using Borboteca_Usuarios.Application.Services;
 using Borboteca_Usuarios.Domain.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Borboteca_Usuarios.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("api/Favorito")]
     public class FavoritoController : Controller
@@ -21,18 +24,21 @@ namespace Borboteca_Usuarios.API.Controllers
         [HttpGet]
         public IActionResult GetFavoritosPorIdPerson(int id)
         {
-            try
-            {
-                return new JsonResult(_Service.GetFavoritosPorIdPerson(id)) { StatusCode = 201 };
-            }
-            catch (Exception e)
-            {
+            var response = new ResponseDTO<List<FavoritoDTO>>();
+            response = _Service.GetFavoritosPorIdPerson(id);
 
-                return BadRequest(new {e.Message });
+            if (response.Response.Any())
+            {
+                return new JsonResult(response.Response) { StatusCode = 404 };
             }
+            else
+            {
+                return new JsonResult(response.Data) { StatusCode = 200 };
+            }
+           
         }
       
-        [Route("Add")]
+        
         [HttpPost]
         public IActionResult AgregarFavoritoDto(FavoritoDTO favoritoDto)
         {
@@ -45,6 +51,19 @@ namespace Borboteca_Usuarios.API.Controllers
 
                 return BadRequest(new {e.Message });
             }
+        }
+        [HttpDelete]
+        public IActionResult DeleteFavorito(FavoritoDTO favorito)
+        {
+            if (_Service.DeleteFavorito(favorito))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
     }
 }
