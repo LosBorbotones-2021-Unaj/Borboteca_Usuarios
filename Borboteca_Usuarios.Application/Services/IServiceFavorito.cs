@@ -14,7 +14,7 @@ namespace Borboteca_Usuarios.Application.Services
     {
         ResponseDTO<List<FavoritoDTO>> GetFavoritosPorIdPerson(int id);
      
-        object AgregarFavorito(FavoritoDTO favoritoDto);
+        ResponseDTO<FavoritoDTO> AgregarFavorito(FavoritoDTO favoritoDto);
         bool DeleteFavorito(FavoritoDTO favorito);
         public bool ExisteFavorito(FavoritoDTO favorito);
     }
@@ -29,8 +29,9 @@ namespace Borboteca_Usuarios.Application.Services
             _query = query;
         }
 
-        public object AgregarFavorito(FavoritoDTO favoritoDto)
+        public ResponseDTO<FavoritoDTO> AgregarFavorito(FavoritoDTO favoritoDto)
         {
+            var response = new ResponseDTO<FavoritoDTO>();
             if (!ExisteFavorito(favoritoDto))
             {
                 Favoritos favoritos = new Favoritos()
@@ -39,12 +40,15 @@ namespace Borboteca_Usuarios.Application.Services
                     Usuariosid = favoritoDto.idUsuario
                 };
                 _repository.Add<Favoritos>(favoritos);
-                return favoritoDto;
+                response.Data.Add(favoritoDto);
+                return response;
             }
             else
             {
-               DeleteFavorito(favoritoDto);
-               return favoritoDto;
+                DeleteFavorito(favoritoDto);
+                response.Data.Add(favoritoDto);
+                response.Response.Add("borrado");
+                return response;
             }
             
 

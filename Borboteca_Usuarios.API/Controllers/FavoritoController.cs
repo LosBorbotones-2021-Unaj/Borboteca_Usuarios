@@ -42,15 +42,17 @@ namespace Borboteca_Usuarios.API.Controllers
         [HttpPost]
         public IActionResult AgregarFavoritoDto(FavoritoDTO favoritoDto)
         {
-            try
+            var response = new ResponseDTO<FavoritoDTO>();
+            response = _Service.AgregarFavorito(favoritoDto);
+            if (response.Response.Any())
             {
-                return new JsonResult(_Service.AgregarFavorito(favoritoDto)) { StatusCode = 201 }; 
+                return new JsonResult(response.Response) { StatusCode = 204 };
             }
-            catch (Exception e)
+            else
             {
-
-                return BadRequest(new {e.Message });
+                return new JsonResult(response.Data) { StatusCode = 200 };
             }
+           
         }
         [HttpDelete]
         public IActionResult DeleteFavorito(FavoritoDTO favorito)
