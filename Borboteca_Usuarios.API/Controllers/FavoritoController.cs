@@ -21,11 +21,11 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             _Service = service;
         }
-        [HttpGet]
-        public IActionResult GetFavoritosPorIdPerson(int id)
+        [HttpGet("{Usuarioid}")]
+        public IActionResult GetFavoritosPorIdPerson(int Usuarioid)
         {
             var response = new ResponseDTO<List<FavoritoDTO>>();
-            response = _Service.GetFavoritosPorIdPerson(id);
+            response = _Service.GetFavoritosPorIdPerson(Usuarioid);
 
             if (response.Response.Any())
             {
