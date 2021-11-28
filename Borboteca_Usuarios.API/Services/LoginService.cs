@@ -74,7 +74,7 @@ namespace Borboteca_Usuarios.API.Services
             var keys = Encoding.ASCII.GetBytes(JwtKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", usuario.id.ToString()), new Claim("roll",usuario.roll.ToString()),new Claim("nombre", usuario.Nombre)}),
+                Subject = new ClaimsIdentity(new[] { new Claim("id",  usuario.id.ToString()), new Claim("roll",usuario.roll.ToString()),new Claim("nombre", usuario.Nombre)}),
                 Expires = DateTime.UtcNow.AddHours(24),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keys), SecurityAlgorithms.HmacSha256Signature),
             };
