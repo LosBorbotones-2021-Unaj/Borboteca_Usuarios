@@ -56,9 +56,10 @@ namespace Borboteca_Usuarios.AccesData.Queries
 
         public UsuarioVistaDTO GetbypassEncrypt(string email, string password)
         {
-            return (from x in context.Usuarios
+            return (from x in context.Usuarios 
+                  
                            where x.Email == email && x.Contraseña == password
-                           select new UsuarioVistaDTO { id = x.Id ,Nombre=x.Nombre,Apellido=x.Apellido,Email=x.Email }).FirstOrDefault<UsuarioVistaDTO>();
+                           select new UsuarioVistaDTO { id = x.Id ,Nombre=x.Nombre,Apellido=x.Apellido,Email=x.Email ,roll=x.Rollid}).FirstOrDefault<UsuarioVistaDTO>();
 
           
         }

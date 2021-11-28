@@ -12,5 +12,6 @@ namespace Borboteca_Usuarios.Domain.DTO
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
+        public int roll { get; set; } 
     }
 }
