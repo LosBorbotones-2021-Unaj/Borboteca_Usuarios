@@ -41,7 +41,7 @@ namespace Borboteca_Usuarios.AccesData.Queries
 
         public List<FavoritoDTO> GetFavoritosPorIdPerson(int id)
         {
-            return (from x in context.Favoritos where x.Id == id select new FavoritoDTO { Libro = x.Libroid, idUsuario = x.Usuariosid }).ToList<FavoritoDTO>();
+            return (from x in context.Favoritos where x.Usuariosid == id select new FavoritoDTO { Libro = x.Libroid, idUsuario = x.Usuariosid }).ToList<FavoritoDTO>();
         }
 
         public Usuarios GetUsuarioPorId(int idUsuario)
