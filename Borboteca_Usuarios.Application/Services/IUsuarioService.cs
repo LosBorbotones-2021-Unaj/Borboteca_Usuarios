@@ -1,5 +1,6 @@
 ﻿using Borboteca_Usuarios.AccesData.Command;
 using Borboteca_Usuarios.AccesData.Queries;
+using Borboteca_Usuarios.Application.Sengrid;
 using Borboteca_Usuarios.Application.Utilities;
 using Borboteca_Usuarios.Domain.Commands;
 using Borboteca_Usuarios.Domain.DTO;
@@ -24,12 +25,14 @@ namespace Borboteca_Usuarios.Application.Services
     {
         private readonly IGenericsRepository _repository;
         private readonly IUsuarioQuery _query;
-        
+        private readonly IMailService _emailService;
 
-        public UsuarioService(IGenericsRepository repository, IUsuarioQuery query)
+
+        public UsuarioService(IGenericsRepository repository, IUsuarioQuery query, IMailService emailService)
         {
             _repository = repository;
             _query = query;
+            _emailService = emailService;
         }
 
         public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO)
@@ -47,6 +50,7 @@ namespace Borboteca_Usuarios.Application.Services
 
                 };
                 _repository.Add<Usuarios>(usuario);
+                _emailService.sendEmailAsync(usuario.Email);
                 UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
                 {
                     Nombre = usuarioDTO.Nombre,
