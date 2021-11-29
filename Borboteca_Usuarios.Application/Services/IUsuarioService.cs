@@ -19,6 +19,8 @@ namespace Borboteca_Usuarios.Application.Services
         public UsuarioVistaDTO GetUsuarioById(int id);
         public ResponseDTO<Usuarios> MostrarUsuarios();
         public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO);
+
+        public Usuarios GetUsuarioByEmail(string email);
         
     }
     public class UsuarioService : IUsuarioService
@@ -37,6 +39,7 @@ namespace Borboteca_Usuarios.Application.Services
 
         public ResponseDTO<UsuarioVistaDTO> AgregarUsuario(UsuarioDTO usuarioDTO)
         {
+
             var response = new ResponseDTO<UsuarioVistaDTO>();
             try
             {
@@ -89,6 +92,9 @@ namespace Borboteca_Usuarios.Application.Services
             return _query.GetUsuarioById(id);
         }
 
-        
+        public Usuarios GetUsuarioByEmail(string email)
+        {
+            return _query.GetUsuarioByEmail(email);
+        }
     }
 }

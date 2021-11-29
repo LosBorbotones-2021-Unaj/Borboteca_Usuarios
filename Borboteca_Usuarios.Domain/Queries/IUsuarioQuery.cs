@@ -12,9 +12,10 @@ namespace Borboteca_Usuarios.Domain.Queries
     {
         public UsuarioVistaDTO GetUsuarioById(int id);
         public List<Usuarios> GetAll();
-      
-
+     
         public Usuarios GetById(int id);
         public UsuarioVistaDTO GetbypassEncrypt(string email, string password);
+
+        public Usuarios GetUsuarioByEmail(string email);
     }
 }

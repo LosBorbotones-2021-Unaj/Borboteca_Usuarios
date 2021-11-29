@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Borboteca_Usuarios.Domain.Entities;
 
 namespace Borboteca_Usuarios.API.Controllers
 {
@@ -54,7 +57,21 @@ namespace Borboteca_Usuarios.API.Controllers
       
 
         [HttpPost]
-        public IActionResult guardarUsuario(UsuarioDTO usuarioDto) {
+        public IActionResult guardarUsuario([FromBody] UsuarioDTO usuarioDto) {
+
+            if (verificarSiExisteUsuario(usuarioDto.Email))
+            {
+                UsuarioExistente usuarioExistente = new UsuarioExistente();
+                usuarioExistente.EmailExistente ="Existente";
+                return new JsonResult(usuarioExistente) { StatusCode = 409 };
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult(ModelState) { StatusCode = 400 };
+            }
+            
+
             var response = new ResponseDTO<UsuarioVistaDTO>();
             response = _service.AgregarUsuario(usuarioDto);
             if (response.Response.Any())
@@ -66,6 +83,25 @@ namespace Borboteca_Usuarios.API.Controllers
                 return new JsonResult(response.Data) { StatusCode = 201 };
             }
            
+        }
+
+        private bool verificarSiExisteUsuario(String email) 
+        {
+            Usuarios usuario= _service.GetUsuarioByEmail(email);
+
+            if (usuario==null)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private class UsuarioExistente { 
+
+            public string EmailExistente { get; set; }
+
         }
     }
 }

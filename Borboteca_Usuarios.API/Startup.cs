@@ -2,10 +2,14 @@ using Borboteca_Usuarios.AccesData;
 using Borboteca_Usuarios.AccesData.Command;
 using Borboteca_Usuarios.AccesData.Queries;
 using Borboteca_Usuarios.API.Services;
+using Borboteca_Usuarios.API.Validator;
 using Borboteca_Usuarios.Application.Sengrid;
 using Borboteca_Usuarios.Application.Services;
 using Borboteca_Usuarios.Domain.Commands;
+using Borboteca_Usuarios.Domain.DTO;
 using Borboteca_Usuarios.Domain.Queries;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -49,6 +53,9 @@ namespace Borboteca_Usuarios.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Borboteca_Usuarios.API", Version = "v1" });
             });
+
+            services.AddMvc().AddFluentValidation();
+
             var connectionString = Configuration.GetSection("ConnectionString").Value;
             services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer(connectionString));
             services.AddTransient<Compiler, SqlServerCompiler>(); // injeccion de dependencia a las querys concretas
@@ -58,6 +65,7 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<IFavoritoQuery, FavoritoQuery>();
             services.AddTransient<IServiceFavorito, ServiceFavorito>();
             services.AddTransient<IMailService, SendGridEmailService>();
+            services.AddTransient<IValidator<UsuarioDTO>, UsuarioValidator>();
 
             services.AddScoped<ILoginService, LoginService>();
             ////////////////////////////////////////////////////////////////////////////
@@ -90,6 +98,8 @@ namespace Borboteca_Usuarios.API
                 return new SqlConnection(connectionString);
 
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

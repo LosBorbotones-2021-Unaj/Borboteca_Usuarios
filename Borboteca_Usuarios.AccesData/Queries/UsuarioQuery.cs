@@ -63,5 +63,11 @@ namespace Borboteca_Usuarios.AccesData.Queries
 
           
         }
+
+        public Usuarios GetUsuarioByEmail(string email)
+        {
+            var db = new SqlKata.Execution.QueryFactory(connection, sqlKataCompiler);
+            return db.Query("Usuarios").Where("email", "=", email).FirstOrDefault<Usuarios>();
+        }
     }
 }
