@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Borboteca_Usuarios.API.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+   /* [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]*/
     [ApiController]
     [Route("api/Favorito")]
     public class FavoritoController : Controller
@@ -46,11 +46,11 @@ namespace Borboteca_Usuarios.API.Controllers
             response = _Service.AgregarFavorito(favoritoDto);
             if (response.Response.Any())
             {
-                return new JsonResult(response.Response) { StatusCode = 204 };
+                return new JsonResult(response.Data) { StatusCode = 200 };
             }
             else
             {
-                return new JsonResult(response.Data) { StatusCode = 200 };
+                return new JsonResult(response.Data) { StatusCode = 201 };
             }
            
         }
