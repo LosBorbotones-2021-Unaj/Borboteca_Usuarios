@@ -46,11 +46,11 @@ namespace Borboteca_Usuarios.API.Controllers
             response = _Service.AgregarFavorito(favoritoDto);
             if (response.Response.Any())
             {
-                return new JsonResult(response.Data) { StatusCode = 200 };
+                return new JsonResult(response.Response) { StatusCode = 204 };
             }
             else
             {
-                return new JsonResult(response.Data) { StatusCode = 201 };
+                return new JsonResult(response.Data) { StatusCode = 200 };
             }
            
         }
