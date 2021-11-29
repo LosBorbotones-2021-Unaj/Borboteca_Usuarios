@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.25.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Borboteca_Usuarios.AccesData\Borboteca_Usuarios.AccesData.csproj" />
     <ProjectReference Include="..\Borboteca_Usuarios.Domain\Borboteca_Usuarios.Domain.csproj" />
   </ItemGroup>

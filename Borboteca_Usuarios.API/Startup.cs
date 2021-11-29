@@ -2,6 +2,7 @@ using Borboteca_Usuarios.AccesData;
 using Borboteca_Usuarios.AccesData.Command;
 using Borboteca_Usuarios.AccesData.Queries;
 using Borboteca_Usuarios.API.Services;
+using Borboteca_Usuarios.Application.Sengrid;
 using Borboteca_Usuarios.Application.Services;
 using Borboteca_Usuarios.Domain.Commands;
 using Borboteca_Usuarios.Domain.Queries;
@@ -56,6 +57,7 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<IUsuarioService, UsuarioService>();    
             services.AddTransient<IFavoritoQuery, FavoritoQuery>();
             services.AddTransient<IServiceFavorito, ServiceFavorito>();
+            services.AddTransient<IMailService, SendGridEmailService>();
 
             services.AddScoped<ILoginService, LoginService>();
             ////////////////////////////////////////////////////////////////////////////
