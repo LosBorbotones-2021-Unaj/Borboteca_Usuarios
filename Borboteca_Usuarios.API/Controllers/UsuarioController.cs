@@ -68,7 +68,7 @@ namespace Borboteca_Usuarios.API.Controllers
 
             if (!ModelState.IsValid)
             {
-                return new JsonResult(ModelState) { StatusCode = 400 };
+                //return new JsonResult(ModelState) { StatusCode = 400 };
             }
             
 

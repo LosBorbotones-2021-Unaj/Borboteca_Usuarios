@@ -53,7 +53,7 @@ namespace Borboteca_Usuarios.Application.Services
 
                 };
                 _repository.Add<Usuarios>(usuario);
-                _emailService.sendEmailAsync(usuario.Email);
+                _emailService.sendEmailAsync(usuario.Email, usuario.Nombre, usuario.Apellido);
                 UsuarioVistaDTO usuarioVistaDTO = new UsuarioVistaDTO
                 {
                     Nombre = usuarioDTO.Nombre,

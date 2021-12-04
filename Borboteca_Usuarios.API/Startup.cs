@@ -1,6 +1,7 @@
 using Borboteca_Usuarios.AccesData;
 using Borboteca_Usuarios.AccesData.Command;
 using Borboteca_Usuarios.AccesData.Queries;
+using Borboteca_Usuarios.API.Models;
 using Borboteca_Usuarios.API.Services;
 using Borboteca_Usuarios.API.Validator;
 using Borboteca_Usuarios.Application.Sengrid;
@@ -66,6 +67,7 @@ namespace Borboteca_Usuarios.API
             services.AddTransient<IServiceFavorito, ServiceFavorito>();
             services.AddTransient<IMailService, SendGridEmailService>();
             services.AddTransient<IValidator<UsuarioDTO>, UsuarioValidator>();
+            services.AddTransient<IValidator<LoginModel>, LoginModelValidator>();
 
             services.AddScoped<ILoginService, LoginService>();
             ////////////////////////////////////////////////////////////////////////////

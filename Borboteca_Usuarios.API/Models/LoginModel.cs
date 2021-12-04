@@ -9,9 +9,9 @@ namespace Borboteca_Usuarios.API.Models
 {
     public class LoginModel
     {
-        [Required]
+        //[Required]
         public string Email { get; set; }
-        [Required]
+        //[Required]
         public string Password { get; set; }
     }
 }

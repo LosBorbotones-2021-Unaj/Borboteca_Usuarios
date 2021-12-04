@@ -11,7 +11,7 @@ namespace Borboteca_Usuarios.Application.Sengrid
 {
     public interface IMailService
     {
-        Task sendEmailAsync(string toEmail);
+        Task sendEmailAsync(string toEmail,string nombre, string apellido);
     }
 
     public class SendGridEmailService : IMailService
@@ -25,7 +25,7 @@ namespace Borboteca_Usuarios.Application.Sengrid
 
         string keyTemplate = "d-b7a51b57888045fb9ac647059fd75d08";
 
-        public async Task sendEmailAsync(string toEmail)
+        public async Task sendEmailAsync(string toEmail, string nombre, string apellido)
         {
             string key =  Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             var sendGridClient = new SendGridClient(key);
@@ -34,12 +34,14 @@ namespace Borboteca_Usuarios.Application.Sengrid
             sendGridMessage.AddTo(toEmail);
             
             sendGridMessage.SetTemplateId(keyTemplate);
-            
+
             sendGridMessage.SetTemplateData(new
             {
-                name = "Borbotca",
+                name = nombre,
+                apellido = apellido,
                 url = "https://dotnetthoughts.net"
-            });
+
+            }); ;
 
             var response = await sendGridClient.SendEmailAsync(sendGridMessage);
 
