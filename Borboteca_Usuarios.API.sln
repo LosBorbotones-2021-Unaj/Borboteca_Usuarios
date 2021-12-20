@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borboteca_Usuarios.API", "Borboteca_Usuarios.API\Borboteca_Usuarios.API.csproj", "{02D4B112-4FAB-4B88-B29E-54E780B06E65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Borboteca_Usuarios.API", "Borboteca_Usuarios.API\Borboteca_Usuarios.API.csproj", "{02D4B112-4FAB-4B88-B29E-54E780B06E65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borboteca_Usuarios.AccesData", "Borboteca_Usuarios.AccesData\Borboteca_Usuarios.AccesData.csproj", "{C8EBD70A-346C-42B4-BC16-FE23E6482F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Borboteca_Usuarios.AccesData", "Borboteca_Usuarios.AccesData\Borboteca_Usuarios.AccesData.csproj", "{C8EBD70A-346C-42B4-BC16-FE23E6482F66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borboteca_Usuarios.Application", "Borboteca_Usuarios.Application\Borboteca_Usuarios.Application.csproj", "{96BF4A4B-EC0F-4F89-8952-72D53A3CD3E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Borboteca_Usuarios.Application", "Borboteca_Usuarios.Application\Borboteca_Usuarios.Application.csproj", "{96BF4A4B-EC0F-4F89-8952-72D53A3CD3E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borboteca_Usuarios.Domain", "Borboteca_Usuarios.Domain\Borboteca_Usuarios.Domain.csproj", "{80325B33-3F9B-467A-AE0B-E0CDBF5F8CD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Borboteca_Usuarios.Domain", "Borboteca_Usuarios.Domain\Borboteca_Usuarios.Domain.csproj", "{80325B33-3F9B-467A-AE0B-E0CDBF5F8CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borboteca_Usuarios.Test", "Borboteca_Usuarios.Test\Borboteca_Usuarios.Test.csproj", "{60A59A51-0F08-489C-A6FA-5EEA9DCCA260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{80325B33-3F9B-467A-AE0B-E0CDBF5F8CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80325B33-3F9B-467A-AE0B-E0CDBF5F8CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80325B33-3F9B-467A-AE0B-E0CDBF5F8CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A59A51-0F08-489C-A6FA-5EEA9DCCA260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A59A51-0F08-489C-A6FA-5EEA9DCCA260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A59A51-0F08-489C-A6FA-5EEA9DCCA260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A59A51-0F08-489C-A6FA-5EEA9DCCA260}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

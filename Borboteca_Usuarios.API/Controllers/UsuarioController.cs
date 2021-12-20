@@ -24,8 +24,6 @@ namespace Borboteca_Usuarios.API.Controllers
             this._service = service;
         }
 
-
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult GetResult()
         {
@@ -49,9 +47,9 @@ namespace Borboteca_Usuarios.API.Controllers
             {
                 return new JsonResult(_service.GetUsuarioById(id)) { StatusCode = 200 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return BadRequest(new { error = "No se devuelve nada" + e.Message });
+                return new JsonResult(NotFound()) { StatusCode = 404 };
             }
         }
       
@@ -85,7 +83,7 @@ namespace Borboteca_Usuarios.API.Controllers
            
         }
 
-        private bool verificarSiExisteUsuario(String email) 
+        public bool verificarSiExisteUsuario(String email) 
         {
             Usuarios usuario= _service.GetUsuarioByEmail(email);
 

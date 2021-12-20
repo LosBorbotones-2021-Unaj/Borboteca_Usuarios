@@ -59,7 +59,7 @@ namespace Borboteca_Usuarios.AccesData.Queries
             return (from x in context.Usuarios 
                   
                            where x.Email == email && x.Contraseña == password
-                           select new UsuarioVistaDTO { id = x.Id ,Nombre=x.Nombre,Apellido=x.Apellido,Email=x.Email ,roll=x.Rollid}).FirstOrDefault<UsuarioVistaDTO>();
+                           select new UsuarioVistaDTO { id = x.Id ,Nombre=x.Nombre,Apellido=x.Apellido,Email=x.Email ,Rollid = x.Rollid}).FirstOrDefault<UsuarioVistaDTO>();
 
           
         }

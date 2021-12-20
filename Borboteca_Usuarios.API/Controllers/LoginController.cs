@@ -38,7 +38,7 @@ namespace Borboteca_Usuarios.API.Controllers
             {
                 if (response == null)
                 {
-                    return BadRequest();
+                    return new JsonResult(NotFound()) { StatusCode = 404 };
                 }
                 else
                 {

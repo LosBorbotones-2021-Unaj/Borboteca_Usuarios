@@ -37,8 +37,6 @@ namespace Borboteca_Usuarios.API.Controllers
             }
            
         }
-      
-        
         [HttpPost]
         public IActionResult AgregarFavoritoDto(FavoritoDTO favoritoDto)
         {
@@ -59,11 +57,11 @@ namespace Borboteca_Usuarios.API.Controllers
         {
             if (_Service.DeleteFavorito(favorito))
             {
-                return Ok();
+                return new JsonResult(Ok()) { StatusCode = 200 };
             }
             else
             {
-                return BadRequest();
+                return new JsonResult(NotFound()) { StatusCode = 404 };
             }
 
         }
